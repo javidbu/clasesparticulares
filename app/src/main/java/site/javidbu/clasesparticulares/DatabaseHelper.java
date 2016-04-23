@@ -4,7 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-//TODO Cuando implemente metodos de escritura de la base de datos, tengo que usar transacciones
+//TODO Cuando implemente métodos de escritura de la base de datos, tengo que usar transacciones
 // http://developer.android.com/intl/es/reference/android/database/sqlite/SQLiteDatabase.html
 
 /**
@@ -41,6 +41,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("insert into subjects (name) values ('Historia');");
         db.execSQL("insert into subjects (name) values ('Filosofía');");
         db.execSQL("insert into subjects (name) values ('Francés');");
+        db.execSQL("insert into subjects (name) values ('Otro');");
     }
 
     @Override

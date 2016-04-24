@@ -50,12 +50,14 @@ public class StudentDataSource {
     public void deleteStudent(Student student) {
         long id = student.getId();
         System.out.println("Student with id=" + id + " was deleted");
-        db.delete("student", "_id = " + id, null);
+        db.delete("students", "_id = " + id, null);
+        db.delete("classes", "student_id = " + id, null);
     }
 
     public List<Student> getAllStudents() {
         List<Student> students = new ArrayList<>();
 
+        //TODO Aquí es donde debería ir la query para sacar también la deuda...
         Cursor cursor = db.query("students", columnas, null, null, null, null, null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {

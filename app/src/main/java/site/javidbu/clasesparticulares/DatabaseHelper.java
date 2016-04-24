@@ -5,6 +5,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 //TODO Cuando implemente métodos de escritura de la base de datos, tengo que usar transacciones
+//TODO tiene sentido incluir en los alumnos algo así como un campo studying?
+//TODO habría que añadir en todos los sitios el campo deleted, en vez de borrar los registros?
 // http://developer.android.com/intl/es/reference/android/database/sqlite/SQLiteDatabase.html
 
 /**

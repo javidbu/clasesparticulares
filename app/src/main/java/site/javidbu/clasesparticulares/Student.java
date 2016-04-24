@@ -6,7 +6,7 @@ package site.javidbu.clasesparticulares;
  */
 public class Student {
     // Student attributes:
-    private long id, subject_id, price, phone;
+    private long id, subject_id, price, phone, debt, classes;
     private String name, email, address, comments;
 
     // Setters
@@ -42,6 +42,14 @@ public class Student {
         this.comments = comments;
     }
 
+    public void setDebt(long debt) {
+        this.debt = debt;
+    }
+
+    public void setClasses(long classes) {
+        this.classes = classes;
+    }
+
     // Getters
     public long getId() {
         return id;
@@ -73,6 +81,14 @@ public class Student {
 
     public String getComments() {
         return comments;
+    }
+
+    public long getClasses() {
+        return classes;
+    }
+
+    public long getDebt() {
+        return debt;
     }
 
     // Used in the ArrayAdapter in the ListView

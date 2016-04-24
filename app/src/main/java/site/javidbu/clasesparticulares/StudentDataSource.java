@@ -16,7 +16,6 @@ import java.util.List;
 public class StudentDataSource {
     private SQLiteDatabase db;
     private DatabaseHelper dbHelper;
-    private String[] columnas = {"_id", "name", "subject_id", "price", "email", "phone", "address", "comments"};
 
     public StudentDataSource(Context context) {
         dbHelper = new DatabaseHelper(context);
@@ -40,7 +39,13 @@ public class StudentDataSource {
         valores.put("address", address);
         valores.put("comments", comments);
         long insertId = db.insert("students", null, valores);
-        Cursor cursor = db.query("students", columnas, "_id = " + insertId, null, null, null, null);
+        Cursor cursor = db.rawQuery("select students._id, students.name, students.subject_id, " +
+                "students.price, students.email, students.phone, students.address, " +
+                "students.comments, sum(classes.duration)*students.price as debt, " +
+                "count(classes._id) as classes from students inner join classes on students._id " +
+                "= classes.student_id and classes.paid = 0 where students._id = " + insertId +
+                " group by students._id, students.name, students.subject_id, students.price, " +
+                "students.email students.phone, students.address, students.comments", null);
         cursor.moveToFirst();
         Student newStudent = cursorToStudent(cursor);
         cursor.close();
@@ -56,9 +61,13 @@ public class StudentDataSource {
 
     public List<Student> getAllStudents() {
         List<Student> students = new ArrayList<>();
-
-        //TODO Aquí es donde debería ir la query para sacar también la deuda...
-        Cursor cursor = db.query("students", columnas, null, null, null, null, null);
+        Cursor cursor = db.rawQuery("select students._id, students.name, students.subject_id, " +
+                "students.price, students.email, students.phone, students.address, " +
+                "students.comments, sum(classes.duration)*students.price as debt, " +
+                "count(classes._id) as classes from students inner join classes on students._id " +
+                "= classes.student_id and classes.paid = 0 group by students._id, students.name, " +
+                "students.subject_id, students.price, students.email, students.phone, " +
+                "students.address, students.comments", null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             Student student = cursorToStudent(cursor);
@@ -79,6 +88,8 @@ public class StudentDataSource {
         student.setPhone(cursor.getLong(5));
         student.setAddress(cursor.getString(6));
         student.setComments(cursor.getString(7));
+        student.setDebt(cursor.getInt(8));
+        student.setClasses(cursor.getInt(9));
         return student;
     }
 }

@@ -20,15 +20,13 @@ public class Start extends ListActivity {
 
         List<Student> valores = datasource.getAllStudents();
 
-        // use the SimpleCursorAdapter to show the elements in a ListView
-        //TODO Enterarme de como cambiar esto para enseñar lo que quiera...
-        ArrayAdapter<Student> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, valores);
+        StudentAdapter adapter = new StudentAdapter(valores, this);
         setListAdapter(adapter);
     }
 
     public void onClick(View view){
         @SuppressWarnings("unchecked")
-        ArrayAdapter<Student> adapter = (ArrayAdapter<Student>)getListAdapter();
+        StudentAdapter adapter = (StudentAdapter)getListAdapter();
         Student student;
         switch (view.getId()) {
             case R.id.add:

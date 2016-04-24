@@ -42,10 +42,10 @@ public class StudentDataSource {
         Cursor cursor = db.rawQuery("select students._id, students.name, students.subject_id, " +
                 "students.price, students.email, students.phone, students.address, " +
                 "students.comments, sum(classes.duration)*students.price as debt, " +
-                "count(classes._id) as classes from students inner join classes on students._id " +
+                "count(classes._id) as classes from students left join classes on students._id " +
                 "= classes.student_id and classes.paid = 0 where students._id = " + insertId +
                 " group by students._id, students.name, students.subject_id, students.price, " +
-                "students.email students.phone, students.address, students.comments", null);
+                "students.email, students.phone, students.address, students.comments", null);
         cursor.moveToFirst();
         Student newStudent = cursorToStudent(cursor);
         cursor.close();
@@ -54,7 +54,6 @@ public class StudentDataSource {
 
     public void deleteStudent(Student student) {
         long id = student.getId();
-        System.out.println("Student with id=" + id + " was deleted");
         db.delete("students", "_id = " + id, null);
         db.delete("classes", "student_id = " + id, null);
     }
@@ -64,7 +63,7 @@ public class StudentDataSource {
         Cursor cursor = db.rawQuery("select students._id, students.name, students.subject_id, " +
                 "students.price, students.email, students.phone, students.address, " +
                 "students.comments, sum(classes.duration)*students.price as debt, " +
-                "count(classes._id) as classes from students inner join classes on students._id " +
+                "count(classes._id) as classes from students left join classes on students._id " +
                 "= classes.student_id and classes.paid = 0 group by students._id, students.name, " +
                 "students.subject_id, students.price, students.email, students.phone, " +
                 "students.address, students.comments", null);

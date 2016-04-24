@@ -92,7 +92,7 @@ public class Student {
     }
 
     // Used in the ArrayAdapter in the ListView
-    // TODO Ver si esto cuadra con varios atributos de alguna manera...
+    // TODO Esto lo puedo eliminar ya?
     @Override
     public String toString() {
         return name;

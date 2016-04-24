@@ -6,7 +6,8 @@ package site.javidbu.clasesparticulares;
  */
 public class Student {
     // Student attributes:
-    private long id, subject_id, price, phone, debt, classes;
+    private long id, subject_id, phone, classes;
+    private float price, debt;
     private String name, email, address, comments;
 
     // Setters
@@ -18,7 +19,7 @@ public class Student {
         this.subject_id = subject_id;
     }
 
-    public void setPrice(long price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 
@@ -42,7 +43,7 @@ public class Student {
         this.comments = comments;
     }
 
-    public void setDebt(long debt) {
+    public void setDebt(float debt) {
         this.debt = debt;
     }
 
@@ -59,7 +60,7 @@ public class Student {
         return subject_id;
     }
 
-    public long getPrice() {
+    public float getPrice() {
         return price;
     }
 
@@ -87,7 +88,7 @@ public class Student {
         return classes;
     }
 
-    public long getDebt() {
+    public float getDebt() {
         return debt;
     }
 

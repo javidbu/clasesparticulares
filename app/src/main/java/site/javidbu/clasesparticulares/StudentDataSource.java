@@ -29,7 +29,7 @@ public class StudentDataSource {
         dbHelper.close();
     }
 
-    public Student createStudent(String name, long subject_id, long price, String email, long phone, String address, String comments) {
+    public Student createStudent(String name, long subject_id, float price, String email, long phone, String address, String comments) {
         ContentValues valores = new ContentValues();
         valores.put("name", name);
         valores.put("subject_id", subject_id);
@@ -82,7 +82,7 @@ public class StudentDataSource {
         student.setId(cursor.getLong(0));
         student.setName(cursor.getString(1));
         student.setSubject_id(cursor.getLong(2));
-        student.setPrice(cursor.getLong(3));
+        student.setPrice(cursor.getFloat(3));
         student.setEmail(cursor.getString(4));
         student.setPhone(cursor.getLong(5));
         student.setAddress(cursor.getString(6));

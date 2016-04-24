@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">ClasesParticulares</string>
-    <string name="info">Te debe %1$d€ de %2$d clases.</string>
+    <string name="info">Te debe %1$.2f€ de %2$d clases.</string>
 </resources>

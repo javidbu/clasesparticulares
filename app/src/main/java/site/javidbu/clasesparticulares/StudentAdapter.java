@@ -29,13 +29,12 @@ public class StudentAdapter extends ArrayAdapter<Student> {
             convertView = inflater.inflate(R.layout.student_element, parent, false);
         }
         TextView tvName = (TextView) convertView.findViewById(R.id.st_name);
-        TextView tvDebt = (TextView) convertView.findViewById(R.id.st_debt);
-        TextView tvClasses = (TextView) convertView.findViewById(R.id.st_classes);
+        TextView tvInfo = (TextView) convertView.findViewById(R.id.st_info);
         Student s = studentList.get(position);
 
         tvName.setText(s.getName());
-        tvDebt.setText(String.valueOf(s.getDebt()));
-        tvClasses.setText(String.valueOf(s.getClasses()));
+        tvInfo.setText(String.format(getContext().getString(R.string.info), s.getDebt(), s.getClasses()));
+
 
         return convertView;
     }

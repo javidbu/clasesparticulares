@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">ClasesParticulares</string>
     <string name="info">Te debe %1$.2f€ de %2$d clases.</string>
+    <string name="price">Precio: </string>
+    <string name="eur">€</string>
+    <string name="prompt_name">Nombre</string>
+    <string name="prompt_email">e-mail</string>
+    <string name="phone">Teléfono: </string>
+    <string name="prompt_address">Dirección</string>
+    <string name="prompt_comments">Comentarios</string>
+    <string name="save">Guardar</string>
+    <string name="delete">Borrar</string>
 </resources>

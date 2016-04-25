@@ -1,9 +1,15 @@
 package site.javidbu.clasesparticulares;
 
+//TODO actividad para crear alumno
+//TODO actividad para editar alumno
+//TODO actividad para ver alumno
+//TODO actividad para añadir clases
+//TODO actividad para ver las clases
+
 import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 
 import java.util.List;
 
@@ -32,6 +38,8 @@ public class Start extends ListActivity {
             case R.id.add:
                 student = datasource.createStudent("Juan", 1, 15, "juan@juan.com", 987654321, "calle, ciudad, España", "Nada que objetar");
                 adapter.add(student);
+                Intent i = new Intent(Start.this, EditStudent.class);
+                startActivity(i);
                 break;
             case R.id.delete:
                 if (getListAdapter().getCount() > 0) {

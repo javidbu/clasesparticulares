@@ -36,8 +36,6 @@ public class Start extends ListActivity {
         Student student;
         switch (view.getId()) {
             case R.id.add:
-                student = datasource.createStudent("Juan", 1, 15, "juan@juan.com", 987654321, "calle, ciudad, España", "Nada que objetar");
-                adapter.add(student);
                 Intent i = new Intent(Start.this, EditStudent.class);
                 startActivity(i);
                 break;

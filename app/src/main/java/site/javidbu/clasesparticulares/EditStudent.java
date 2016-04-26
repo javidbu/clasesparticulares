@@ -16,11 +16,13 @@ public class EditStudent extends AppCompatActivity {
     private EditText edPhone;
     private EditText edAddress;
     private EditText edComments;
+    private Long student_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_student);
+        student_id = getIntent().getLongExtra("student_id", 0);
         edName = (EditText) findViewById(R.id.edit_name);
         edSubject = (Spinner) findViewById(R.id.edit_subject);
         edPrice = (EditText) findViewById(R.id.edit_price);
@@ -29,16 +31,28 @@ public class EditStudent extends AppCompatActivity {
         edAddress = (EditText) findViewById(R.id.edit_address);
         edComments = (EditText) findViewById(R.id.edit_comments);
         //TODO llenar el spinner con las asignaturas
+
+        if (student_id > 0) {
+            StudentDataSource datasource = new StudentDataSource(this);
+            datasource.open();
+            Student student = datasource.getStudent(student_id);
+            datasource.close();
+            edName.setText(student.getName());
+            //TODO set subject
+            edPrice.setText(String.valueOf(student.getPrice()));
+            edEmail.setText(student.getEmail());
+            edPhone.setText(String.valueOf(student.getPhone()));
+            edAddress.setText(student.getAddress());
+            edComments.setText(student.getComments());
+        }
     }
 
     public void onClick(View view){
         switch (view.getId()) {
             case R.id.bt_save:
-                StudentDataSource datasource = new StudentDataSource(this);
-                datasource.open();
-                //FIXME da fallos al intentar meter un contacto sin telefono, y supongo que sin ninguno de los campos numericos
-                //TODO Verificar que el alumno tenga los campos necesarios
-                //TODO Habría que ver cómo guardar en BBDD algún alumno sin campos (Supongo que me estará guardando strings vacías...
+                //TODO Habría que ver cómo guardar en BBDD algún alumno sin campos (Supongo que me estará guardando strings vacías...)
+                //TODO Si se intenta insertar un campo obligatorio (nombre o precio) subrayarlo en rojo. Si no, quitar el subrayado...
+                //TODO Que saque la asignatura del spinner
                 String campo;
                 campo = edName.getText().toString();
                 if (campo.equals("")) {
@@ -55,13 +69,25 @@ public class EditStudent extends AppCompatActivity {
                 if (!campo.equals("")) {
                     phone = Long.parseLong(campo);
                 }
-                datasource.createStudent(name,
-                        1, //edSubject.getSelectedItemId(),
-                        price,
-                        edEmail.getText().toString(),
-                        phone,
-                        edAddress.getText().toString(),
-                        edComments.getText().toString());
+                StudentDataSource datasource = new StudentDataSource(this);
+                datasource.open();
+                if (student_id > 0) {
+                    datasource.updateStudent(student_id, name,
+                            1, //edSubject.getSelectedItemId(),
+                            price,
+                            edEmail.getText().toString(),
+                            phone,
+                            edAddress.getText().toString(),
+                            edComments.getText().toString());
+                } else {
+                    datasource.createStudent(name,
+                            1, //edSubject.getSelectedItemId(),
+                            price,
+                            edEmail.getText().toString(),
+                            phone,
+                            edAddress.getText().toString(),
+                            edComments.getText().toString());
+                }
                 datasource.close();
                 Intent i = new Intent(EditStudent.this, Start.class);
                 startActivity(i);

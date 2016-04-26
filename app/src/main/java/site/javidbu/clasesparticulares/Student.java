@@ -91,11 +91,4 @@ public class Student {
     public float getDebt() {
         return debt;
     }
-
-    // Used in the ArrayAdapter in the ListView
-    // TODO Esto lo puedo eliminar ya?
-    @Override
-    public String toString() {
-        return name;
-    }
 }

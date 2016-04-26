@@ -52,6 +52,29 @@ public class StudentDataSource {
         return newStudent;
     }
 
+    public Student updateStudent(Long id, String name, long subject_id, float price, String email, long phone, String address, String comments) {
+        ContentValues valores = new ContentValues();
+        valores.put("name", name);
+        valores.put("subject_id", subject_id);
+        valores.put("price", price);
+        valores.put("email", email);
+        valores.put("phone", phone);
+        valores.put("address", address);
+        valores.put("comments", comments);
+        db.update("students", valores, "_id = " + id, null);
+        Cursor cursor = db.rawQuery("select students._id, students.name, students.subject_id, " +
+                "students.price, students.email, students.phone, students.address, " +
+                "students.comments, sum(classes.duration)*students.price as debt, " +
+                "count(classes._id) as classes from students left join classes on students._id " +
+                "= classes.student_id and classes.paid = 0 where students._id = " + id +
+                " group by students._id, students.name, students.subject_id, students.price, " +
+                "students.email, students.phone, students.address, students.comments", null);
+        cursor.moveToFirst();
+        Student updatedStudent = cursorToStudent(cursor);
+        cursor.close();
+        return updatedStudent;
+    }
+
     public void deleteStudent(Student student) {
         long id = student.getId();
         db.delete("students", "_id = " + id, null);
@@ -75,6 +98,21 @@ public class StudentDataSource {
         }
         cursor.close();
         return students;
+    }
+
+    public Student getStudent(long id) {
+        Cursor cursor = db.rawQuery("select students._id, students.name, students.subject_id, " +
+                "students.price, students.email, students.phone, students.address, " +
+                "students.comments, sum(classes.duration)*students.price as debt, " +
+                "count(classes._id) as classes from students left join classes on students._id " +
+                "= classes.student_id and classes.paid = 0 where students._id = " + id +
+                " group by students._id, students.name, " +
+                "students.subject_id, students.price, students.email, students.phone, " +
+                "students.address, students.comments", null);
+        cursor.moveToFirst();
+        Student student = cursorToStudent(cursor);
+        cursor.close();
+        return student;
     }
 
     public Student cursorToStudent(Cursor cursor) {

@@ -8,7 +8,7 @@ public class Student {
     // Student attributes:
     private long id, subject_id, phone, classes;
     private float price, debt;
-    private String name, email, address, comments;
+    private String name, email, address, comments, subject;
 
     // Setters
     public void setId(long id) {
@@ -51,6 +51,10 @@ public class Student {
         this.classes = classes;
     }
 
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
     // Getters
     public long getId() {
         return id;
@@ -90,5 +94,9 @@ public class Student {
 
     public float getDebt() {
         return debt;
+    }
+
+    public String getSubject() {
+        return subject;
     }
 }

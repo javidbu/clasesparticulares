@@ -1,6 +1,5 @@
 package site.javidbu.clasesparticulares;
 
-//TODO actividad para ver alumno
 //TODO actividad para añadir clases
 //TODO actividad para ver las clases
 
@@ -35,7 +34,7 @@ public class Start extends ListActivity {
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> a, View v, int pos, long id) {
                 long student_id = ((Student)a.getItemAtPosition(pos)).getId();
-                Intent i = new Intent(Start.this, EditStudent.class);
+                Intent i = new Intent(Start.this, ViewStudent.class);
                 i.putExtra("student_id", student_id);
                 startActivity(i);
             }

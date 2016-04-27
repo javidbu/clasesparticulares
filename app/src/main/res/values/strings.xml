@@ -10,4 +10,6 @@
     <string name="prompt_comments">Comentarios</string>
     <string name="save">Guardar</string>
     <string name="delete">Borrar</string>
+    <string name="view_price">Precio: %1$.2f€</string>
+    <string name="view_phone">Teléfono: %1$d</string>
 </resources>

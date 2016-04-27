@@ -42,17 +42,19 @@ public class StudentDataSource {
         Cursor cursor = db.rawQuery("select students._id, students.name, students.subject_id, " +
                 "students.price, students.email, students.phone, students.address, " +
                 "students.comments, sum(classes.duration)*students.price as debt, " +
-                "count(classes._id) as classes from students left join classes on students._id " +
-                "= classes.student_id and classes.paid = 0 where students._id = " + insertId +
+                "count(classes._id) as classes, subjects.name as subject " +
+                " from students left join classes on students._id " +
+                "= classes.student_id and classes.paid = 0 left join subjects on subjects._id = " +
+                "students.subject_id where students._id = " + insertId +
                 " group by students._id, students.name, students.subject_id, students.price, " +
-                "students.email, students.phone, students.address, students.comments", null);
+                "students.email, students.phone, students.address, students.comments, subjects.name", null);
         cursor.moveToFirst();
         Student newStudent = cursorToStudent(cursor);
         cursor.close();
         return newStudent;
     }
 
-    public Student updateStudent(Long id, String name, long subject_id, float price, String email, long phone, String address, String comments) {
+    public void updateStudent(Long id, String name, long subject_id, float price, String email, long phone, String address, String comments) {
         ContentValues valores = new ContentValues();
         valores.put("name", name);
         valores.put("subject_id", subject_id);
@@ -62,23 +64,12 @@ public class StudentDataSource {
         valores.put("address", address);
         valores.put("comments", comments);
         db.update("students", valores, "_id = " + id, null);
-        Cursor cursor = db.rawQuery("select students._id, students.name, students.subject_id, " +
-                "students.price, students.email, students.phone, students.address, " +
-                "students.comments, sum(classes.duration)*students.price as debt, " +
-                "count(classes._id) as classes from students left join classes on students._id " +
-                "= classes.student_id and classes.paid = 0 where students._id = " + id +
-                " group by students._id, students.name, students.subject_id, students.price, " +
-                "students.email, students.phone, students.address, students.comments", null);
-        cursor.moveToFirst();
-        Student updatedStudent = cursorToStudent(cursor);
-        cursor.close();
-        return updatedStudent;
     }
 
     public void deleteStudent(Student student) {
         long id = student.getId();
-        db.delete("students", "_id = " + id, null);
         db.delete("classes", "student_id = " + id, null);
+        db.delete("students", "_id = " + id, null);
     }
 
     public List<Student> getAllStudents() {
@@ -86,10 +77,11 @@ public class StudentDataSource {
         Cursor cursor = db.rawQuery("select students._id, students.name, students.subject_id, " +
                 "students.price, students.email, students.phone, students.address, " +
                 "students.comments, sum(classes.duration)*students.price as debt, " +
-                "count(classes._id) as classes from students left join classes on students._id " +
-                "= classes.student_id and classes.paid = 0 group by students._id, students.name, " +
+                "count(classes._id) as classes, subjects.name as subject from students left join classes on students._id " +
+                "= classes.student_id and classes.paid = 0 left join subjects on students.subject_id" +
+                " = subjects._id group by students._id, students.name, " +
                 "students.subject_id, students.price, students.email, students.phone, " +
-                "students.address, students.comments", null);
+                "students.address, students.comments, subjects.name", null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             Student student = cursorToStudent(cursor);
@@ -104,11 +96,13 @@ public class StudentDataSource {
         Cursor cursor = db.rawQuery("select students._id, students.name, students.subject_id, " +
                 "students.price, students.email, students.phone, students.address, " +
                 "students.comments, sum(classes.duration)*students.price as debt, " +
-                "count(classes._id) as classes from students left join classes on students._id " +
-                "= classes.student_id and classes.paid = 0 where students._id = " + id +
+                "count(classes._id) as classes, subjects.name as subject " +
+                "from students left join classes on students._id " +
+                "= classes.student_id and classes.paid = 0 left join subjects on students.subject_id" +
+                " = subjects._id where students._id = " + id +
                 " group by students._id, students.name, " +
                 "students.subject_id, students.price, students.email, students.phone, " +
-                "students.address, students.comments", null);
+                "students.address, students.comments, subjects.name", null);
         cursor.moveToFirst();
         Student student = cursorToStudent(cursor);
         cursor.close();
@@ -127,6 +121,7 @@ public class StudentDataSource {
         student.setComments(cursor.getString(7));
         student.setDebt(cursor.getInt(8));
         student.setClasses(cursor.getInt(9));
+        student.setSubject(cursor.getString(10));
         return student;
     }
 }

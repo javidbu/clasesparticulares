@@ -3,17 +3,16 @@ package site.javidbu.clasesparticulares;
 //TODO actividad para añadir clases
 //TODO actividad para ver las clases
 
-import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.List;
 
-//TODO ListActivity con App Bar?
-public class Start extends ListActivity {
+public class Start extends AppCompatActivity {
     private StudentDataSource datasource;
     private ListView lista;
 
@@ -27,10 +26,11 @@ public class Start extends ListActivity {
 
         List<Student> valores = datasource.getAllStudents();
 
-        StudentAdapter adapter = new StudentAdapter(valores, this);
-        setListAdapter(adapter);
+        lista = (ListView)findViewById(R.id.lv_students);
 
-        lista = getListView();
+        StudentAdapter adapter = new StudentAdapter(valores, this);
+        lista.setAdapter(adapter);
+
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> a, View v, int pos, long id) {
                 long student_id = ((Student)a.getItemAtPosition(pos)).getId();
@@ -43,7 +43,7 @@ public class Start extends ListActivity {
 
     public void onClick(View view){
         @SuppressWarnings("unchecked")
-        StudentAdapter adapter = (StudentAdapter)getListAdapter();
+        StudentAdapter adapter = (StudentAdapter)lista.getAdapter();
         Student student;
         switch (view.getId()) {
             case R.id.add:
@@ -52,8 +52,8 @@ public class Start extends ListActivity {
                 startActivity(i);
                 break;
             case R.id.delete:
-                if (getListAdapter().getCount() > 0) {
-                    student = (Student) getListAdapter().getItem(0);
+                if (lista.getAdapter().getCount() > 0) {
+                    student = (Student) lista.getAdapter().getItem(0);
                     datasource.deleteStudent(student);
                     adapter.remove(student);
                 }

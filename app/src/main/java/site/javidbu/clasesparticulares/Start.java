@@ -25,6 +25,7 @@ public class Start extends AppCompatActivity {
         datasource.open();
 
         List<Student> valores = datasource.getAllStudents();
+        datasource.close();
 
         lista = (ListView)findViewById(R.id.lv_students);
 
@@ -48,7 +49,7 @@ public class Start extends AppCompatActivity {
         switch (view.getId()) {
             case R.id.add:
                 Intent i = new Intent(Start.this, EditStudent.class);
-                i.putExtra("student_id", 0);
+                i.putExtra("student_id", 0L);
                 startActivity(i);
                 break;
             case R.id.delete:

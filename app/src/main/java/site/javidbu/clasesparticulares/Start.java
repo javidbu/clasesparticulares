@@ -65,6 +65,7 @@ public class Start extends AppCompatActivity {
     @Override
     protected void onResume() {
         datasource.open();
+        //TODO refrescar la lista!
         super.onResume();
     }
 

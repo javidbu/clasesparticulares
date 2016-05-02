@@ -14,4 +14,8 @@
     <string name="view_phone">Teléfono: %1$d</string>
     <string name="edit">Editar</string>
     <string name="add_class">Añadir clase</string>
+    <string name="duration">Duración: </string>
+    <string name="paid">¿Pagada?</string>
+    <string name="discard">Descartar</string>
+    <string name="one">1</string>
 </resources>

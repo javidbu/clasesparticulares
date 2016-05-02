@@ -1,4 +1,7 @@
 # Clases Particulares
+
+![Logo](app/src/main/res/mipmap-xhdpi/ic_launcher.png?raw=true "Logo")
+
 ## Introducción
 Esta es una app para llevar la cuenta de las clases particulares.
 Esta app comenzó por una necesidad que tuve hace unos años, que en su

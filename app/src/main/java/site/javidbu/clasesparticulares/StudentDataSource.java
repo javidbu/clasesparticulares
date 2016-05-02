@@ -77,7 +77,7 @@ public class StudentDataSource {
         Cursor cursor = db.rawQuery("select students._id, students.name, students.subject_id, " +
                 "students.price, students.email, students.phone, students.address, " +
                 "students.comments, sum(classes.duration)*students.price as debt, " +
-                "count(classes._id) as classes, subjects.name as subject from students left join classes on students._id " +
+                "sum(classes.duration) as classes, subjects.name as subject from students left join classes on students._id " +
                 "= classes.student_id and classes.paid = 0 left join subjects on students.subject_id" +
                 " = subjects._id group by students._id, students.name, " +
                 "students.subject_id, students.price, students.email, students.phone, " +
@@ -96,7 +96,7 @@ public class StudentDataSource {
         Cursor cursor = db.rawQuery("select students._id, students.name, students.subject_id, " +
                 "students.price, students.email, students.phone, students.address, " +
                 "students.comments, sum(classes.duration)*students.price as debt, " +
-                "count(classes._id) as classes, subjects.name as subject " +
+                "sum(classes.duration) as classes, subjects.name as subject " +
                 "from students left join classes on students._id " +
                 "= classes.student_id and classes.paid = 0 left join subjects on students.subject_id" +
                 " = subjects._id where students._id = " + id +
@@ -120,15 +120,14 @@ public class StudentDataSource {
         student.setAddress(cursor.getString(6));
         student.setComments(cursor.getString(7));
         student.setDebt(cursor.getInt(8));
-        student.setClasses(cursor.getInt(9));
+        student.setClasses(cursor.getFloat(9));
         student.setSubject(cursor.getString(10));
         return student;
     }
 
     public List<Class> getAllStudentsClasses(long student_id) {
         List<Class> classes = new ArrayList<>();
-        Cursor cursor = db.rawQuery("select classes._id, classes.student_id, classes.date, "
-                + "classes.duration, classes.paid, classes.comments from classes where student_id = "
+        Cursor cursor = db.rawQuery("select * from classes where student_id = "
                 + student_id + " order by date desc", null);
         cursor.moveToFirst();
         while(!cursor.isAfterLast()) {

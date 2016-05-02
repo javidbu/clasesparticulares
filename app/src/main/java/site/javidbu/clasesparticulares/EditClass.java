@@ -34,7 +34,7 @@ public class EditClass extends AppCompatActivity {
         switch (view.getId()) {
             case R.id.bt_save:
                 Long unix_date = getUnixDate(class_date);
-                Long duration = Long.parseLong(class_duration.getText().toString());
+                Float duration = Float.parseFloat(class_duration.getText().toString());
                 Long paid = class_paid.isChecked() ? 1L : 0L;
                 String comments = class_comments.getText().toString();
                 Class clase = dataSource.createOrUpdateClass(class_id, student_id, unix_date, duration, paid, comments);

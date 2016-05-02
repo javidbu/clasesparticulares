@@ -18,4 +18,6 @@
     <string name="paid">¿Pagada?</string>
     <string name="discard">Descartar</string>
     <string name="one">1</string>
+    <string name="cl_info">Duración: %1$.1f.</string>
+    <string name="date">01/01/1970</string>
 </resources>

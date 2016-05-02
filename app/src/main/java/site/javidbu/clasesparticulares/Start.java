@@ -1,6 +1,5 @@
 package site.javidbu.clasesparticulares;
 
-//TODO actividad para añadir clases
 //TODO actividad para ver las clases
 
 import android.content.Intent;

@@ -124,4 +124,63 @@ public class StudentDataSource {
         student.setSubject(cursor.getString(10));
         return student;
     }
+
+    public List<Class> getAllStudentsClasses(long student_id) {
+        List<Class> classes = new ArrayList<>();
+        Cursor cursor = db.rawQuery("select classes._id, classes.student_id, classes.date, "
+                + "classes.duration, classes.paid, classes.comments from classes where student_id = "
+                + student_id + " order by date desc", null);
+        cursor.moveToFirst();
+        while(!cursor.isAfterLast()) {
+            Class clase = cursorToClass(cursor);
+            classes.add(clase);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return classes;
+    }
+
+    public List<Class> getAllStudentsUnpaidClasses(long student_id) {
+        List<Class> classes = new ArrayList<>();
+        Cursor cursor = db.rawQuery("select * from classes where paid = 0 and student_id = " +
+                student_id + " order by date desc", null);
+        cursor.moveToFirst();
+        while(!cursor.isAfterLast()) {
+            Class clase = cursorToClass(cursor);
+            classes.add(clase);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return classes;
+    }
+
+    public Class createOrUpdateClass(Long id, Long student_id, Long date, float duration, Long paid, String comments) {
+        ContentValues valores = new ContentValues();
+        valores.put("student_id", student_id);
+        valores.put("date", date);
+        valores.put("duration", duration);
+        valores.put("paid", paid);
+        valores.put("comments", comments);
+        if (id == 0L) {
+            id = db.insert("classes", null, valores);
+        } else {
+            db.update("classes", valores, "_id = " + id, null);
+        }
+        Cursor cursor = db.rawQuery("select * from classes where _id = " + id, null);
+        cursor.moveToFirst();
+        Class newClass = cursorToClass(cursor);
+        cursor.close();
+        return newClass;
+    }
+
+    public Class cursorToClass(Cursor cursor) {
+        Class clase = new Class();
+        clase.setId(cursor.getLong(0));
+        clase.setStudent_id(cursor.getLong(1));
+        clase.setDate(cursor.getLong(2));
+        clase.setDuration(cursor.getFloat(3));
+        clase.setPaid(cursor.getLong(4));
+        clase.setComments(cursor.getString(5));
+        return clase;
+    }
 }

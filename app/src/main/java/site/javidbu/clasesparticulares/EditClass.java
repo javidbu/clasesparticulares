@@ -1,6 +1,5 @@
 package site.javidbu.clasesparticulares;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -38,14 +37,10 @@ public class EditClass extends AppCompatActivity {
                 Long paid = class_paid.isChecked() ? 1L : 0L;
                 String comments = class_comments.getText().toString();
                 Class clase = dataSource.createOrUpdateClass(class_id, student_id, unix_date, duration, paid, comments);
-                Intent intent = new Intent(EditClass.this, ViewStudent.class);
-                intent.putExtra("student_id", student_id);
-                startActivity(intent);
+                finish();
                 break;
             case R.id.bt_discard:
-                Intent i = new Intent(EditClass.this, ViewStudent.class);
-                i.putExtra("student_id", student_id);
-                startActivity(i);
+                finish();
                 break;
         }
     }

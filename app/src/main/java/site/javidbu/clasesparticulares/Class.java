@@ -1,5 +1,7 @@
 package site.javidbu.clasesparticulares;
 
+import java.util.Date;
+
 /**
  * Created by Javi on 02/05/2016.
  * Class that represent classes (...)
@@ -8,6 +10,7 @@ public class Class {
     private float duration;
     private long id, student_id, date, paid;
     private String comments;
+    private Date printable_date;
 
     public void setDuration(float duration) {
         this.duration = duration;
@@ -23,6 +26,7 @@ public class Class {
 
     public void setDate(long date) {
         this.date = date;
+        this.printable_date = new Date(date*1000L);
     }
 
     public void setPaid(long paid) {
@@ -31,6 +35,11 @@ public class Class {
 
     public void setComments(String comments) {
         this.comments = comments;
+    }
+
+    public void setPrintable_date(Date printable_date) {
+        this.printable_date = printable_date;
+        this.date = printable_date.getTime()/1000;
     }
 
     public float getDuration() {
@@ -56,5 +65,9 @@ public class Class {
 
     public String getComments() {
         return comments;
+    }
+
+    public Date getPrintable_date() {
+        return printable_date;
     }
 }

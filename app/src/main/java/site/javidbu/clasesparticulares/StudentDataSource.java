@@ -153,6 +153,32 @@ public class StudentDataSource {
         return classes;
     }
 
+    public List<Class> getAllClasses() {
+        List<Class> classes = new ArrayList<>();
+        Cursor cursor = db.rawQuery("select * from classes order by date desc", null);
+        cursor.moveToFirst();
+        while(!cursor.isAfterLast()) {
+            Class clase = cursorToClass(cursor);
+            classes.add(clase);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return classes;
+    }
+
+    public List<Class> getAllUnpaidClasses() {
+        List<Class> classes = new ArrayList<>();
+        Cursor cursor = db.rawQuery("select * from classes where paid = 0 order by date desc", null);
+        cursor.moveToFirst();
+        while(!cursor.isAfterLast()) {
+            Class clase = cursorToClass(cursor);
+            classes.add(clase);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return classes;
+    }
+
     public Class createOrUpdateClass(Long id, Long student_id, Long date, float duration, Long paid, String comments) {
         ContentValues valores = new ContentValues();
         valores.put("student_id", student_id);

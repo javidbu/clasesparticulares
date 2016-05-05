@@ -179,6 +179,15 @@ public class StudentDataSource {
         return classes;
     }
 
+    public Class getClass(long class_id) {
+        Cursor cursor = db.rawQuery("select * from classes where _id = " + class_id +
+                " order by date desc", null);
+        cursor.moveToFirst();
+        Class clase = cursorToClass(cursor);
+        cursor.close();
+        return clase;
+    }
+
     public Class createOrUpdateClass(Long id, Long student_id, Long date, float duration, Long paid, String comments) {
         ContentValues valores = new ContentValues();
         valores.put("student_id", student_id);

@@ -20,4 +20,8 @@
     <string name="one">1</string>
     <string name="cl_info">Duración: %1$.1f.</string>
     <string name="date">01/01/1970</string>
+    <string name="view_classes">Ver clases</string>
+    <string name="paid_classes">¿Mostrar las clases pagadas?</string>
+    <string name="yes">Sí</string>
+    <string name="no">No</string>
 </resources>

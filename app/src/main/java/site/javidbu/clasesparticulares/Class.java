@@ -10,7 +10,7 @@ public class Class {
     private float duration;
     private long id, student_id, date, paid;
     private String comments;
-    private Date printable_date;
+    private Date printable_date; //TODO consider using Calendar instead of Date...
 
     public void setDuration(float duration) {
         this.duration = duration;

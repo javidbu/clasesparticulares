@@ -18,12 +18,12 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_weight = "1"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:text="@string/edit"
                 android:id="@+id/bt_edit"
                 android:onClick="onClick"/>
@@ -31,7 +31,15 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_weight = "1"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/view_classes"
+                android:id="@+id/bt_view_classes"
+                android:onClick="onClick"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_weight = "1"
+                android:layout_height="match_parent"
                 android:text="@string/add_class"
                 android:id="@+id/bt_add_class"
                 android:onClick="onClick" />

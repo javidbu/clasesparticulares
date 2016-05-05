@@ -14,6 +14,7 @@ import java.util.List;
 public class Start extends AppCompatActivity {
     private StudentDataSource datasource;
     private ListView lista;
+    private StudentAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +29,7 @@ public class Start extends AppCompatActivity {
 
         lista = (ListView)findViewById(R.id.lv_students);
 
-        StudentAdapter adapter = new StudentAdapter(valores, this);
+        adapter = new StudentAdapter(valores, this);
         lista.setAdapter(adapter);
 
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -65,7 +66,9 @@ public class Start extends AppCompatActivity {
     @Override
     protected void onResume() {
         datasource.open();
-        //TODO refrescar la lista!
+        adapter.clear();
+        adapter.addAll(datasource.getAllStudents());
+        adapter.notifyDataSetChanged();
         super.onResume();
     }
 

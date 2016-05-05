@@ -27,6 +27,16 @@ public class EditClass extends AppCompatActivity {
         class_paid = (CheckBox)findViewById(R.id.class_paid);
         class_comments = (EditText)findViewById(R.id.class_comments);
         dataSource = new StudentDataSource(this);
+        if (class_id > 0L) {
+            dataSource.open();
+            Class clase = dataSource.getClass(class_id);
+            class_duration.setText(String.valueOf(clase.getDuration()));
+            class_date.updateDate(clase.getPrintable_date().getYear(),
+                    clase.getPrintable_date().getMonth(),
+                    clase.getPrintable_date().getDay());
+            class_paid.setChecked(clase.getPaid() > 0L);
+            class_comments.setText(clase.getComments());
+        }
     }
 
     public void onClick(View view) {

@@ -33,7 +33,9 @@ public class ClassAdapter extends ArrayAdapter<Class> {
         Class c = classList.get(position);
 
         tvName.setText(c.getPrintable_date().toString());
+        //TODO Poner la fecha en castellano cuando proceda...
         tvInfo.setText(String.format(getContext().getString(R.string.cl_info), c.getDuration()));
+        //TODO Cambiar el color del fondo para indicar si está pagada
 
         return convertView;
     }

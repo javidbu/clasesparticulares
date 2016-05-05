@@ -51,6 +51,11 @@ public class ViewStudent extends AppCompatActivity {
                 intent.putExtra("student_id", student_id);
                 startActivity(intent);
                 break;
+            case R.id.bt_view_classes:
+                Intent i2 = new Intent(ViewStudent.this, ViewClasses.class);
+                i2.putExtra("student_id", student_id);
+                startActivity(i2);
+                break;
         }
     }
 

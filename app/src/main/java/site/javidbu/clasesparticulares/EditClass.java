@@ -7,7 +7,8 @@ import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
-import java.util.Date;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class EditClass extends AppCompatActivity {
     private Long class_id, student_id;
@@ -31,9 +32,9 @@ public class EditClass extends AppCompatActivity {
             dataSource.open();
             Class clase = dataSource.getClass(class_id);
             class_duration.setText(String.valueOf(clase.getDuration()));
-            class_date.updateDate(clase.getPrintable_date().getYear(),
-                    clase.getPrintable_date().getMonth(),
-                    clase.getPrintable_date().getDay());
+            class_date.updateDate(clase.getPrintable_date().get(Calendar.YEAR),
+                    clase.getPrintable_date().get(Calendar.MONTH),
+                    clase.getPrintable_date().get(Calendar.DATE));
             class_paid.setChecked(clase.getPaid() > 0L);
             class_comments.setText(clase.getComments());
         }
@@ -46,7 +47,7 @@ public class EditClass extends AppCompatActivity {
                 Float duration = Float.parseFloat(class_duration.getText().toString());
                 Long paid = class_paid.isChecked() ? 1L : 0L;
                 String comments = class_comments.getText().toString();
-                Class clase = dataSource.createOrUpdateClass(class_id, student_id, unix_date, duration, paid, comments);
+                dataSource.createOrUpdateClass(class_id, student_id, unix_date, duration, paid, comments);
                 finish();
                 break;
             case R.id.bt_discard:
@@ -59,8 +60,9 @@ public class EditClass extends AppCompatActivity {
         int day = datepicker.getDayOfMonth();
         int month = datepicker.getMonth();
         int year = datepicker.getYear();
-        Date date = new Date(year, month, day);
-        return date.getTime()/1000;
+        Calendar c = GregorianCalendar.getInstance();
+        c.set(year, month, day);
+        return c.getTimeInMillis()/1000L;
     }
 
     @Override

@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.text.DateFormat;
 import java.util.List;
 
 /**
@@ -32,7 +33,7 @@ public class ClassAdapter extends ArrayAdapter<Class> {
         TextView tvInfo = (TextView) convertView.findViewById(R.id.cl_info);
         Class c = classList.get(position);
 
-        tvName.setText(c.getPrintable_date().toString());
+        tvName.setText(DateFormat.getDateInstance(DateFormat.FULL).format(c.getPrintable_date().getTime()));
         //TODO Poner la fecha en castellano cuando proceda...
         tvInfo.setText(String.format(getContext().getString(R.string.cl_info), c.getDuration()));
         //TODO Cambiar el color del fondo para indicar si está pagada

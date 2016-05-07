@@ -1,6 +1,7 @@
 package site.javidbu.clasesparticulares;
 
-import java.util.Date;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 /**
  * Created by Javi on 02/05/2016.
@@ -8,9 +9,9 @@ import java.util.Date;
  */
 public class Class {
     private float duration;
-    private long id, student_id, date, paid;
+    private long id, student_id, paid;
     private String comments;
-    private Date printable_date; //TODO consider using Calendar instead of Date...
+    private Calendar printable_date;
 
     public void setDuration(float duration) {
         this.duration = duration;
@@ -25,8 +26,9 @@ public class Class {
     }
 
     public void setDate(long date) {
-        this.date = date;
-        this.printable_date = new Date(date*1000L);
+        Calendar c = GregorianCalendar.getInstance();
+        c.setTimeInMillis(date*1000L);
+        this.printable_date = c;
     }
 
     public void setPaid(long paid) {
@@ -35,11 +37,6 @@ public class Class {
 
     public void setComments(String comments) {
         this.comments = comments;
-    }
-
-    public void setPrintable_date(Date printable_date) {
-        this.printable_date = printable_date;
-        this.date = printable_date.getTime()/1000;
     }
 
     public float getDuration() {
@@ -55,10 +52,6 @@ public class Class {
         return student_id;
     }
 
-    public long getDate() {
-        return date;
-    }
-
     public long getPaid() {
         return paid;
     }
@@ -67,7 +60,7 @@ public class Class {
         return comments;
     }
 
-    public Date getPrintable_date() {
+    public Calendar getPrintable_date() {
         return printable_date;
     }
 }

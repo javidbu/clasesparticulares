@@ -1,7 +1,5 @@
 package site.javidbu.clasesparticulares;
 
-//TODO actividad para ver las clases
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

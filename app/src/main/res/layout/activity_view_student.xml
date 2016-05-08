@@ -1,107 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="site.javidbu.clasesparticulares.ViewStudent"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <LinearLayout
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        android:orientation="vertical">
+        android:paddingTop="@dimen/activity_vertical_margin">
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <Button
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_weight = "1"
-                android:layout_height="match_parent"
-                android:text="@string/edit"
-                android:id="@+id/bt_edit"
-                android:onClick="onClick"/>
+                android:layout_height="wrap_content">
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_weight = "1"
-                android:layout_height="match_parent"
-                android:text="@string/delete"
-                android:id="@+id/bt_delete" />
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_weight = "1"
+                    android:layout_height="match_parent"
+                    android:text="@string/edit"
+                    android:id="@+id/bt_edit"
+                    android:onClick="onClick"/>
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_weight = "1"
-                android:layout_height="match_parent"
-                android:text="@string/view_classes"
-                android:id="@+id/bt_view_classes"
-                android:onClick="onClick"/>
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_weight = "1"
+                    android:layout_height="match_parent"
+                    android:text="@string/delete"
+                    android:id="@+id/bt_delete" />
 
-            <Button
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_weight = "1"
+                    android:layout_height="match_parent"
+                    android:text="@string/view_classes"
+                    android:id="@+id/bt_view_classes"
+                    android:onClick="onClick"/>
+
+            </LinearLayout>
+
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_weight = "1"
-                android:layout_height="match_parent"
-                android:text="@string/add_class"
-                android:id="@+id/bt_add_class"
-                android:onClick="onClick" />
+                android:layout_height="wrap_content"
+                android:id="@+id/view_name"
+                android:text="@string/prompt_name"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/view_subject"
+                android:text="@string/app_name"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/view_price"
+                android:text="@string/view_price"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/view_email"
+                android:text="@string/prompt_email"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/view_phone"
+                android:text="@string/view_phone"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/view_address"
+                android:text="@string/prompt_address"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/view_comments"
+                android:text="@string/prompt_comments"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
 
         </LinearLayout>
 
-        <TextView
-            android:layout_width="match_parent"
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/bt_add_class"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/view_name"
-            android:text="@string/prompt_name"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:src="@mipmap/ic_add"
+            android:background="false"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:onClick="onClick"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/view_subject"
-            android:text="@string/app_name"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/view_price"
-            android:text="@string/view_price"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/view_email"
-            android:text="@string/prompt_email"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/view_phone"
-            android:text="@string/view_phone"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/view_address"
-            android:text="@string/prompt_address"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/view_comments"
-            android:text="@string/prompt_comments"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    </LinearLayout>
+    </RelativeLayout>
 
 </ScrollView>

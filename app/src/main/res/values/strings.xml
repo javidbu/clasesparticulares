@@ -24,4 +24,5 @@
     <string name="paid_classes">¿Mostrar las clases pagadas?</string>
     <string name="yes">Sí</string>
     <string name="no">No</string>
+    <string name="add_student">Añadir alumno</string>
 </resources>

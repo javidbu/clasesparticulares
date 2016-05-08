@@ -41,21 +41,11 @@ public class Start extends AppCompatActivity {
     }
 
     public void onClick(View view){
-        @SuppressWarnings("unchecked")
-        StudentAdapter adapter = (StudentAdapter)lista.getAdapter();
-        Student student;
         switch (view.getId()) {
             case R.id.add:
                 Intent i = new Intent(Start.this, EditStudent.class);
                 i.putExtra("student_id", 0L);
                 startActivity(i);
-                break;
-            case R.id.delete:
-                if (lista.getAdapter().getCount() > 0) {
-                    student = (Student) lista.getAdapter().getItem(0);
-                    datasource.deleteStudent(student);
-                    adapter.remove(student);
-                }
                 break;
         }
         adapter.notifyDataSetChanged();

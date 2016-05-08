@@ -10,29 +10,12 @@
     android:orientation="vertical"
     tools:context="site.javidbu.clasesparticulares.Start">
 
-    <LinearLayout
-        android:id="@+id/group"
+    <Button
+        android:id="@+id/add"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/add"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Add New"
-            android:onClick="onClick"
-            android:layout_weight="1"/>
-
-        <Button
-            android:id="@+id/delete"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Delete First"
-            android:onClick="onClick"
-            android:layout_weight="1"/>
-
-    </LinearLayout>
+        android:text="@string/add_student"
+        android:onClick="onClick"/>
 
     <ListView
         android:id="@+id/lv_students"

@@ -56,6 +56,10 @@ public class ViewStudent extends AppCompatActivity {
                 i2.putExtra("student_id", student_id);
                 startActivity(i2);
                 break;
+            case R.id.bt_delete:
+                datasource.deleteStudentFromId(student_id);
+                finish();
+                break;
         }
     }
 

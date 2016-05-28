@@ -1,7 +1,5 @@
 package site.javidbu.clasesparticulares;
 
-//TODO Botones para editar o eliminar un alumno, y otro para añadirle clases o ver las que lleva
-
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

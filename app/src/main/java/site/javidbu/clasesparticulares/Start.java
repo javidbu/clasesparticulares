@@ -26,6 +26,7 @@ public class Start extends AppCompatActivity {
         datasource.close();
 
         lista = (ListView)findViewById(R.id.lv_students);
+        lista.setEmptyView(findViewById(android.R.id.empty));
 
         adapter = new StudentAdapter(valores, this);
         lista.setAdapter(adapter);

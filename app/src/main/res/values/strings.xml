@@ -25,4 +25,6 @@
     <string name="yes">Sí</string>
     <string name="no">No</string>
     <string name="add_student">Añadir alumno</string>
+    <string name="empty_classes">Aún no tienes ninguna clase guardada...</string>
+    <string name="empty_students">¡Añade nuevos alumnos pulsando el botón de abajo!</string>
 </resources>

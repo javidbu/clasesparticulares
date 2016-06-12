@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="site.javidbu.clasesparticulares">
+    package="site.javidbu.clasesparticulares"
+    android:installLocation="auto">
 
     <application
         android:allowBackup="true"
@@ -18,7 +19,7 @@
         <activity android:name=".EditStudent" />
         <activity android:name=".ViewStudent" />
         <activity android:name=".EditClass" />
-        <activity android:name=".ViewClasses"></activity>
+        <activity android:name=".ViewClasses" />
     </application>
 
 </manifest>

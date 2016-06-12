@@ -36,6 +36,7 @@ public class ViewClasses extends AppCompatActivity {
         datasource.close();
 
         lista = (ListView)findViewById(R.id.lv_view_classes);
+        lista.setEmptyView(findViewById(android.R.id.empty));
 
         adapter = new ClassAdapter(classes, this);
         lista.setAdapter(adapter);

@@ -1,10 +1,12 @@
 package site.javidbu.clasesparticulares;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.text.DateFormat;
@@ -31,11 +33,19 @@ public class ClassAdapter extends ArrayAdapter<Class> {
         }
         TextView tvName = (TextView) convertView.findViewById(R.id.cl_date);
         TextView tvInfo = (TextView) convertView.findViewById(R.id.cl_info);
+        LinearLayout llBackground = (LinearLayout) convertView.findViewById(R.id.cl_background);
         Class c = classList.get(position);
 
-        tvName.setText(DateFormat.getDateInstance(DateFormat.FULL).format(c.getPrintable_date().getTime()));
+        String date = DateFormat.getDateInstance(DateFormat.FULL).format(c.getPrintable_date().getTime());
+        date = date.substring(0, 1).toUpperCase() + date.substring(1);
+        tvName.setText(date);
         tvInfo.setText(String.format(getContext().getString(R.string.cl_info), c.getDuration()));
-        //TODO Cambiar el color del fondo para indicar si está pagada
+        if(c.getPaid() == 1.0) {
+            llBackground.setBackgroundColor(Color.parseColor("#CFFAAA"));
+        } else {
+
+            llBackground.setBackgroundColor(Color.parseColor("#FFFFFF"));
+        }
 
         return convertView;
     }

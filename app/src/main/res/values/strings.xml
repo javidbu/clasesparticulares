@@ -27,4 +27,6 @@
     <string name="add_student">Añadir alumno</string>
     <string name="empty_classes">Aún no tienes ninguna clase guardada...</string>
     <string name="empty_students">¡Añade nuevos alumnos pulsando el botón de abajo!</string>
+    <string name="homework_name">Nuevos deberes</string>
+    <string name="homework_student_name">Deberes de %s</string>
 </resources>

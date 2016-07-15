@@ -222,4 +222,53 @@ public class StudentDataSource {
         clase.setComments(cursor.getString(5));
         return clase;
     }
+
+    public Homework createOrUpdateHomework(Long id, Long student_id, String name, Long done) {
+        ContentValues valores = new ContentValues();
+        valores.put("student_id", student_id);
+        valores.put("name", name);
+        valores.put("done", done);
+        if (id == 0L) {
+            id = db.insert("homework", null, valores);
+        } else {
+            db.update("homework", valores, "_id = " + id, null);
+        }
+        Cursor cursor = db.rawQuery("select * from homework where _id = " + id, null);
+        cursor.moveToFirst();
+        Homework newHomework = cursorToHomework(cursor);
+        cursor.close();
+        return newHomework;
+    }
+
+    public Homework cursorToHomework(Cursor cursor) {
+        Homework deberes = new Homework();
+        deberes.setId(cursor.getLong(0));
+        deberes.setStudent_id(cursor.getLong(1));
+        deberes.setName(cursor.getString(2));
+        deberes.setDone(cursor.getLong(3));
+        return deberes;
+    }
+
+    public List<Homework> getAllStudentsHomework(long student_id) {
+        List<Homework> deberes = new ArrayList<>();
+        Cursor cursor = db.rawQuery("select * from homework where student_id = "
+                + student_id + " order by _id", null);
+        cursor.moveToFirst();
+        while(!cursor.isAfterLast()) {
+            Homework homework = cursorToHomework(cursor);
+            deberes.add(homework);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return deberes;
+    }
+
+    public Homework getHomework(long homework_id) {
+        Cursor cursor = db.rawQuery("select * from homework where _id = " + homework_id +
+                " order by id", null);
+        cursor.moveToFirst();
+        Homework deberes = cursorToHomework(cursor);
+        cursor.close();
+        return deberes;
+    }
 }

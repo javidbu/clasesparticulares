@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import java.util.List;
+
 public class ViewHomework extends AppCompatActivity {
     private Long student_id;
     private StudentDataSource datasource;
@@ -22,7 +24,7 @@ public class ViewHomework extends AppCompatActivity {
 
         datasource = new StudentDataSource(this);
         datasource.open();
-        homework = datasource.getHomework(student_id); //TODO Preparar la BBDD para que incluya homework, con su método y todo
+        homework = datasource.getAllStudentsHomework(student_id); //TODO Preparar la BBDD para que incluya homework, con su método y todo
         datasource.close();
 
         lista = (ListView)findViewById(R.id.lv_view_homework);

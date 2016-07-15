@@ -12,7 +12,7 @@ import java.util.List;
 public class ViewHomework extends AppCompatActivity {
     private Long student_id;
     private StudentDataSource datasource;
-    private List<Homework> homework; //TODO Hacer class Homework (ver Class) y su adapter
+    private List<Homework> homework;
     private HomeworkAdapter adapter;
     private ListView lista;
 
@@ -20,11 +20,11 @@ public class ViewHomework extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_homework);
-        student_id = getIntent().getLongExtra("student_id");
+        student_id = getIntent().getLongExtra("student_id", 0L);
 
         datasource = new StudentDataSource(this);
         datasource.open();
-        homework = datasource.getAllStudentsHomework(student_id); //TODO Preparar la BBDD para que incluya homework, con su método y todo
+        homework = datasource.getAllStudentsHomework(student_id);
         datasource.close();
 
         lista = (ListView)findViewById(R.id.lv_view_homework);

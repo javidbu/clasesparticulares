@@ -58,6 +58,11 @@ public class ViewStudent extends AppCompatActivity {
                 datasource.deleteStudentFromId(student_id);
                 finish();
                 break;
+            case R.id.bt_view_homework:
+                Intent i3 = new Intent(ViewStudent.this, ViewHomework.class);
+                i3.putExtra("student_id", student_id);
+                startActivity(i3);
+                break;
         }
     }
 

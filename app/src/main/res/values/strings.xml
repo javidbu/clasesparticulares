@@ -20,13 +20,14 @@
     <string name="one">1</string>
     <string name="cl_info">Duración: %1$.1f.</string>
     <string name="date">01/01/1970</string>
-    <string name="view_classes">Ver clases</string>
+    <string name="view_classes">Clases</string>
     <string name="paid_classes">¿Mostrar las clases pagadas?</string>
     <string name="yes">Sí</string>
     <string name="no">No</string>
     <string name="add_student">Añadir alumno</string>
-    <string name="empty_classes">Aún no tienes ninguna clase guardada...</string>
+    <string name="empty_classes">Aún no tienes ninguna clase guardada&#8230;</string>
     <string name="empty_students">¡Añade nuevos alumnos pulsando el botón de abajo!</string>
     <string name="homework_name">Nuevos deberes</string>
     <string name="homework_student_name">Deberes de %s</string>
+    <string name="view_homework">Deberes</string>
 </resources>

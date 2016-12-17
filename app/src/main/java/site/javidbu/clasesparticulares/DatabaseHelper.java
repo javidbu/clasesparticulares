@@ -10,14 +10,14 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "database.db";
-    public static final int DATABASE_VERSION = 2;
+    public static final int DATABASE_VERSION = 3;
 
 
     // Table creation
     private static final String CREATE_SUBJECTS = "create table subjects (_id integer primary key autoincrement, name text not null);";
     private static final String CREATE_STUDENTS = "create table students (_id integer primary key autoincrement, name text not null, subject_id integer, price real not null, email text, phone integer, address text, comments text, foreign key (subject_id) references subjects (_id));";
-    private static final String CREATE_CLASSES = "create table classes (_id integer primary key autoincrement, student_id integer not null, date integer not null, duration real not null, paid integer not null, comments text, foreign key (student_id) references students (_id))";
-    private static final String CREATE_HOMEWORK = "create table homework (_id integer primary key autoincrement, student_id integer not null, name text not null, done integer not null, foreing key (student_id) references students (_id))";
+    private static final String CREATE_CLASSES = "create table classes (_id integer primary key autoincrement, student_id integer not null, date integer not null, duration real not null, paid integer not null, comments text, foreign key (student_id) references students (_id));";
+    private static final String CREATE_HOMEWORK = "create table homework (_id integer primary key autoincrement, student_id integer not null, name text not null, done integer not null, foreign key (student_id) references students (_id));";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

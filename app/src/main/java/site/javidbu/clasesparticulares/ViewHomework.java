@@ -37,7 +37,7 @@ public class ViewHomework extends AppCompatActivity {
             public void onItemClick(AdapterView<?> a, View v, int pos, long id) {
                 Homework aHomework = (Homework) a.getItemAtPosition(pos);
                 Intent i = new Intent(ViewClasses.this, EditClass.class);
-                i.putExtra("student_id", aClass.getStudent_id());
+                i.putExtra("student_id", aClass.getStudent_id
                 i.putExtra("class_id", aClass.getId());
                 startActivity(i);
             }

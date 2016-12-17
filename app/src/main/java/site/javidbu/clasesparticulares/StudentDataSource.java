@@ -252,7 +252,7 @@ public class StudentDataSource {
     public List<Homework> getAllStudentsHomework(long student_id) {
         List<Homework> deberes = new ArrayList<>();
         Cursor cursor = db.rawQuery("select * from homework where student_id = "
-                + student_id + " order by _id", null);
+                + student_id + " order by student_id", null);
         cursor.moveToFirst();
         while(!cursor.isAfterLast()) {
             Homework homework = cursorToHomework(cursor);
@@ -265,7 +265,7 @@ public class StudentDataSource {
 
     public Homework getHomework(long homework_id) {
         Cursor cursor = db.rawQuery("select * from homework where _id = " + homework_id +
-                " order by id", null);
+                " order by _id", null);
         cursor.moveToFirst();
         Homework deberes = cursorToHomework(cursor);
         cursor.close();

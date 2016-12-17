@@ -20,7 +20,8 @@
         <activity android:name=".ViewStudent" />
         <activity android:name=".EditClass" />
         <activity android:name=".ViewClasses" />
-        <activity android:name=".ViewHomework"></activity>
+        <activity android:name=".ViewHomework" />
+        <activity android:name=".EditHomework" />
     </application>
 
 </manifest>

@@ -63,6 +63,11 @@ public class ViewStudent extends AppCompatActivity {
                 i3.putExtra("student_id", student_id);
                 startActivity(i3);
                 break;
+            case R.id.bt_add_homework:
+                Intent i4 = new Intent(ViewStudent.this, EditHomework.class);
+                i4.putExtra("student_id", student_id);
+                startActivity(i4);
+                break;
         }
     }
 

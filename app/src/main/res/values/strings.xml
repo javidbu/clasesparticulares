@@ -30,4 +30,6 @@
     <string name="homework_name">Nuevos deberes</string>
     <string name="homework_student_name">Deberes de %s</string>
     <string name="view_homework">Deberes</string>
+    <string name="made">¿Completados?</string>
+    <string name="homework_name_prompt">Deberes</string>
 </resources>

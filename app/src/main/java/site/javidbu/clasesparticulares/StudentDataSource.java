@@ -69,11 +69,13 @@ public class StudentDataSource {
     public void deleteStudent(Student student) {
         long id = student.getId();
         db.delete("classes", "student_id = " + id, null);
+        db.delete("homework", "student_id = " + id, null);
         db.delete("students", "_id = " + id, null);
     }
 
     public void deleteStudentFromId(long student_id) {
         db.delete("classes", "student_id = " + student_id, null);
+        db.delete("homework", "student_id = " + student_id, null);
         db.delete("students", "_id = " + student_id, null);
     }
 

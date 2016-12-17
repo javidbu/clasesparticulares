@@ -41,10 +41,10 @@ public class ClassAdapter extends ArrayAdapter<Class> {
         tvName.setText(date);
         tvInfo.setText(String.format(getContext().getString(R.string.cl_info), c.getDuration()));
         if(c.getPaid() == 1.0) {
-            llBackground.setBackgroundColor(Color.parseColor("#CFFAAA"));
+            llBackground.setBackgroundColor(Color.parseColor("#8093C572")); // 80% transparency
         } else {
 
-            llBackground.setBackgroundColor(Color.parseColor("#FFFFFF"));
+            llBackground.setBackgroundColor(Color.parseColor("#00FFFFFF")); // 0% transparency (totally transparent)
         }
 
         return convertView;

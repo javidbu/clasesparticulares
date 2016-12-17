@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -25,7 +26,11 @@ public class ViewHomework extends AppCompatActivity {
         datasource = new StudentDataSource(this);
         datasource.open();
         homework = datasource.getAllStudentsHomework(student_id);
+        Student student = datasource.getStudent(student_id);
         datasource.close();
+
+        TextView tvName = (TextView)findViewById(R.id.homework_student_name);
+        tvName.setText(String.format(getString(R.string.homework_student_name), student.getName()));
 
         lista = (ListView)findViewById(R.id.lv_view_homework);
         lista.setEmptyView(findViewById(android.R.id.empty));
@@ -42,6 +47,16 @@ public class ViewHomework extends AppCompatActivity {
                 startActivity(i);
             }
         });*/ //TODO Preparar onClick listener
+    }
+
+    @Override
+    protected void onResume() {
+        datasource.open();
+        homework = datasource.getAllStudentsHomework(student_id);
+        adapter.clear();
+        adapter.addAll(homework);
+        adapter.notifyDataSetChanged();
+        super.onResume();
     }
 
     @Override
